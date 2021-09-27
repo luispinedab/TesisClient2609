@@ -1,0 +1,18 @@
+<nb-card>
+  <nb-card-header>HERMANOS QUE ESTUDIEN EN ESTA INSTITUCIÓN</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <input #nombre nbInput placeholder="Nombre">
+    </div>
+    <div class="row">
+      <input #edad nbInput placeholder="Edad">
+    </div>
+    <div class="row">
+      <input #curso nbInput placeholder="Curso">
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(nombre.value,edad.value,curso.value)">Submit</button>
+  </nb-card-footer>
+</nb-card>

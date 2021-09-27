@@ -1,0 +1,39 @@
+.form-inline [fullWidth] {
+    flex: 1;
+  }
+  
+  .form-inline > * {
+    margin: 0 0.5rem 1.5rem 0;
+    
+  }
+  
+  nb-card.inline-form-card nb-card-body {
+    padding-bottom: 1rem;
+  }
+  
+  .objeto{
+        text-align: right;
+      }
+      nb-card-header{
+        text-align: center;
+      }
+    .button{
+      text-align: center;
+    }
+    
+    nb-card {
+      min-width: 10rem;
+      border-color: #ffffff;
+      background-color: #d0dadaf5;
+    }
+    nb-card-body{
+      background-color:#eaf3f3f5; 
+    }
+    nb-card-footer{
+      background-color:#eaf3f3f5; 
+    }
+  
+  
+    nb-card-header {
+      text-align: center;
+    }

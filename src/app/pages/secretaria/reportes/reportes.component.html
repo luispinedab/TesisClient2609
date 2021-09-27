@@ -1,0 +1,11 @@
+<nb-card>
+    <nb-card-header>
+      Información de Estudiantes
+    </nb-card-header>
+  
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="info" (custom)="onCustom($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+  <button nbButton shape="semi-round" status="primary"(click)="descargar()">descargar</button>

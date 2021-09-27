@@ -1,0 +1,154 @@
+  <nb-card>
+    <nb-card-body>
+      <nb-stepper orientation="horizontal">
+        <nb-step [label]="labelOne">
+          <ng-template #labelOne>CITA</ng-template>
+          <nb-card accent="primary">
+            <nb-card-header><h4>CITA ASIGNADA</h4></nb-card-header>
+            <nb-card-body><nb-alert status="info" closable>Tiene una cita asignada para el día {{dt.getDate()}}/{{dt.getMonth()+1}}/{{dt.getFullYear()}} a las {{dt.getHours()}}:{{dt.getMinutes()}}</nb-alert> </nb-card-body>
+          </nb-card>
+          <div class="offset-sm-5 col-auto mr-auto">
+            <button nbButton disabled nbStepperNext>Atras</button>
+            <button nbButton status="primary" nbStepperNext>Siguiente</button>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelTwo">
+          <ng-template #labelTwo>EVALUACIÓN DIAGNOSTICA</ng-template>
+          <nb-card accent="primary">
+            <nb-card-header><h4>CONSULTAR RESULTADO</h4></nb-card-header>
+            <nb-card-body>
+              <p class="lorem">
+                En esta sección se puede consultar el resultado de la evaluación diagnostica.
+              </p>
+              <div class="row">
+                <button nbButton ghost status="primary" nbPopover="NOTA: {{Nota}}!">CONSULTAR<nb-icon icon="book-open"></nb-icon></button>
+              </div>
+            </nb-card-body>
+            <nb-card-footer>
+              <div class="offset-sm-5 col-auto mr-auto">
+                <button nbButton nbStepperPrevious>Atras</button>
+              <button nbButton status="primary" nbStepperNext>Siguiente</button>
+              </div>
+            </nb-card-footer>
+          </nb-card>
+        </nb-step>
+        <nb-step [stepControl]="avanzar" label="AÑADIR DOCUMENTOS">
+          <nb-card accent="primary">
+            <nb-card-header><h4>AÑADIR DOCUMENTOS</h4></nb-card-header>
+          <nb-card-body>
+            <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+              <div class="row">
+                  <div class="col-md-6">
+                    <nb-card size="small">
+                      <nb-card-header><h6>LISTA DE DOCUMENTOS</h6></nb-card-header>
+                      <nb-card-body>
+                        <nb-list>
+                          <nb-list-item *ngFor="let documento of documentos">
+                            <nb-checkbox [checked]="documento.check" status="primary">{{ documento.nombre }}</nb-checkbox>
+                            <a [href]="[documento.url]" *ngIf="documento.check">descargar</a>
+                          </nb-list-item>
+                        </nb-list>
+                      </nb-card-body>
+                    </nb-card>
+                  </div>
+                  <div class="col-md-6">
+                    <nb-card size="small" [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="giant">
+                      <nb-card-header><h6>SUBIR ARCHIVOS</h6></nb-card-header>
+                      <nb-card-body>
+                      <div class="form-inline1">
+                        <label  class="label col-sm-2 col-form-label">Documento:</label>
+                        <nb-select  formControlName="Tipo">
+                          <nb-option  value="">--Seleccione--</nb-option>
+                          <nb-option *ngFor="let documento of documentos" [value]="documento.value" >{{documento.nombre}}</nb-option>
+                        </nb-select>
+                        <span class="form-text text-danger"
+                            *ngIf="campoEsValido('Tipo')"> 
+                              El campo es obligatorio
+                        </span>
+                    </div>
+                    <div class="form-inline1">
+                      <input type="file" formControlName="Archivo" (change)="cambioArchivo($event)">
+                      <span class="form-text text-danger"
+                          *ngIf="campoEsValido('Archivo')"> 
+                            El campo es obligatorio
+                      </span>
+                    </div>
+                      </nb-card-body>
+                        <nb-card-footer>
+                          <div class="offset-sm-5 col-auto mr-auto">
+                            <button nbButton status="success" type="submit">Subir</button>
+                          </div>
+                        </nb-card-footer>
+                    </nb-card>
+                  </div>
+              </div>
+            </form>
+            <ng-template #dialog let-ref="dialogRef">
+              <nb-card status="warning">
+                <nb-card-header><h6>INFORMACIÓN IMPORTANTE!!</h6></nb-card-header>
+                <nb-card-body><div class="subtitle">Para finalizar el proceso de admisión es necesario realizar el pago de la matrícula.</div></nb-card-body>
+                <nb-card-footer>
+                  <button nbButton hero status="danger" (click)="ref.close()">Cerrar</button>
+                </nb-card-footer>
+              </nb-card>
+            </ng-template>
+          </nb-card-body>
+          <nb-card-footer>
+          <div class="offset-sm-5 col-auto mr-auto">
+            <button nbButton nbStepperPrevious>Atras</button>
+            <button nbButton status="primary" (click)="Validar(dialog)" nbStepperNext>Siguiente</button>
+          </div>
+          </nb-card-footer>
+        </nb-card>
+        </nb-step>
+        <nb-step [label]="labelFour">
+          <ng-template #labelFour>INSCRIPCIÓN</ng-template>
+          <form (ngSubmit)="guardar1()" autocomplete="off" [formGroup]="miFormulario">
+            <nb-card size="Medium" accent="primary" [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="giant">
+                <nb-card-header><h6>Subir Formulario de Matricula</h6></nb-card-header>
+                <nb-card-body>
+                  <div class="row">
+                  <div class="col-md-6">
+                    <nb-card size="small">
+                      <nb-card-header><h6>Subir Formulario de Matricula</h6></nb-card-header>
+                      <nb-card-body>
+                        <div class="form-inline1">
+                          <a status="info" [href]="[formate.url]" nbButton><nb-icon icon="download"></nb-icon>Descargar Formulario</a>
+                        </div>
+                        <div class="form-inline1">
+                        <input type="file" formControlName="Archivo" (change)="cambioArchivo($event)">
+                        <span class="form-text text-danger"
+                                          *ngIf="campoEsValido('Archivo')"> 
+                                            El campo es obligatorio
+                        </span>
+                        </div>
+                        <div class="form-inline1">
+                        <nb-checkbox [checked]="formatoviejo.check" status="primary">{{ formatoviejo.nombre }}</nb-checkbox>
+                        <a [href]="[formatoviejo.url]" *ngIf="formatoviejo.check">descargar</a>
+                        </div>
+                      </nb-card-body>
+                      <nb-card-footer>
+                        <button nbButton status="success"  type="submit">Subir</button>
+                    </nb-card-footer>
+                    </nb-card>
+                  </div>
+                  <div class="col-md-6">
+                    <nb-card size="small">
+                      <nb-card-header><h6>INFO</h6></nb-card-header>
+                      <nb-card-body>
+                        <div class="subtitle">Descargue el formulario de hoja de matricula y suba el documento firmado en formato PDF.</div>
+                      </nb-card-body>
+                    </nb-card>
+                  </div>
+                  </div>
+                </nb-card-body>
+            </nb-card>
+        </form>
+          <div class="offset-sm-5 col-auto mr-auto">
+            <button nbButton nbStepperPrevious>Atras</button>
+            <button nbButton [disabled]="finalizar" (click)="finish()" nbStepperNext status="primary" >Finalizar</button>
+          </div>
+        </nb-step>
+      </nb-stepper>
+    </nb-card-body>
+  </nb-card>

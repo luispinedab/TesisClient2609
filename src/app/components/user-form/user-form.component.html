@@ -1,0 +1,54 @@
+<div class="edit-form">
+    <div class="edit-form-header">
+        <h1>Información</h1>
+    </div>
+    <div class="edit-form-body">
+        <div class="edit-info">
+            <h2 class="info-title-1">Nombre</h2>
+            <input type="text" name="Nombre" [(ngModel)]="user.Name" placeholder="Nombre">
+        </div>
+        <div class="edit-info">
+            <h2 class="info-title-2">Apellido</h2>
+            <input type="text" name="Apellido"[(ngModel)]="user.Lastname" placeholder="Apellido">
+        </div>
+        <div class="edit-info">
+            <h2 class="info-title-3">Identificación</h2>
+            <input type="text" name="Identificación" [(ngModel)]="user.Identification" placeholder="Identificación">
+        </div>
+        <div class="edit-info">
+            <h2 class="info-title-4">Email</h2>
+            <input type="text" name="Email" [(ngModel)]="user.Email" placeholder="Ejemplo@mail.com">
+        </div>
+        <div class="edit-info">
+            <h2 class="info-title-5">Celular</h2>
+            <input type="text" name="Celular" [(ngModel)]="user.PhoneNumber" placeholder="Celular">
+        </div>
+        <div class="edit-info">
+            <h2 class="info-title-6">Nombre de Usuario</h2>
+            <input type="text" name="Nombre de Usuario" [(ngModel)]="user.Nickname" placeholder="Nombre de Usuario">
+        </div>
+        <div class="edit-info">
+            <h2 class="info-title-7">Estado</h2>
+            <input type="text" name="Estado" [(ngModel)]="user.UserState" placeholder="Estado">
+        </div>
+        <div class="edit-info">
+            <h2 class="info-title-8">Tipo de Usuario</h2>
+            <input type="text" name="Tipo de Usuario" [(ngModel)]="user.IDUserType" placeholder="Tipo de Usuario">
+        </div>
+    </div>
+    <div class="edit-form-bottom">
+        <div class="button-left">
+            <button class="btn btn-info" (click)= "edit ? alert() : saveNewUser()">
+                <i class="nb-plus"></i>
+            </button>
+            <button class="btn btn-danger" (click)="deleteUser()">
+                <i class="nb-trash"></i>
+            </button>
+        </div>
+        <div class="button-right">
+            <button class="btn btn-success" (click)="updateUser()">
+                <i class="nb-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<form (ngSubmit)="guardar()" [formGroup]="miFormulario" autocomplete="off">
+    <div class="col-lg-6">
+        <nb-card size="medium" status="primary">
+            <nb-card-header>Seleccione el Curso:</nb-card-header>
+            <nb-card-body>
+                <div class="form-inline">
+                    <label  class="label col-sm-2 col-form-label">Nivel:</label>
+                    <nb-select  formControlName="IDGrade">
+                      <nb-option  value="">--Seleccione--</nb-option>
+                      <nb-option *ngFor="let Curso of grades" 
+                      [value]="Curso.IDGrade">{{Curso.NameGrade}}</nb-option>
+                    </nb-select>
+                      <span class="form-text text-danger"
+                      *ngIf="campoEsValido('IDGrade')"> 
+                          El campo es obligatorio
+                      </span>
+                  </div>
+            </nb-card-body>
+            <nb-card-footer>
+              <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+              <button type="submit" status="success" nbButton>Guardar</button>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+</form>

@@ -1,0 +1,131 @@
+<form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario" *ngIf=((infoedit)&&(flagedit))||(!flagedit)>
+    <div class="col-md-12">
+          <nb-card class="inline-form-card">
+            <nb-card-header><h6> Agregar Observaciones</h6></nb-card-header>
+            <nb-card-body>
+                    <div class="objeto">
+                            <nb-card accent="primary">
+                                <h6>
+                                    {{date   | date: "dd-MM-yyyy"}}
+                                    {{date   | date: "HH:mm:ss"}}
+                                </h6>
+                            </nb-card>
+                    </div>
+                <div class="form-inline">
+                    <label  class="label col-sm-2 col-form-label">Periodo:</label>
+                        <nb-select  formControlName="Periodo">
+                            <nb-option  value="">--Seleccione--</nb-option>
+                            <nb-option value="I">I</nb-option>
+                            <nb-option value="II">II</nb-option>
+                            <nb-option value="III">III</nb-option>
+                            <nb-option value="IV">IV</nb-option>
+                          </nb-select>
+                          <span class="form-text text-danger"
+                          *ngIf="campoEsValido('Periodo')"> 
+                            El campo es obligatorio
+                         </span>
+                </div>    
+                <div class="form-inline">
+                    <label  class="label col-sm-2 col-form-label">Curso:</label>
+                            <nb-select formControlName="IDLevelGrade">
+                                <nb-option  value="">--Seleccione--</nb-option>
+                                <nb-option *ngFor="let Curso of levelgrades" 
+                                [value]="Curso.levelgrade">{{Curso.levelgrade}}</nb-option>
+                            </nb-select>
+                            <span class="form-text text-danger"
+                            *ngIf="campoEsValido('IDLevelGrade')"> 
+                              El campo es obligatorio
+                           </span>
+                          <label  class="label col-sm-2 col-form-label">Estudiante:</label>
+                            <nb-select formControlName="IDInfoEstudiante">
+                                <nb-option  value="">--Seleccione--</nb-option>
+                                <nb-option *ngFor="let Estudiante of estudiantes" 
+                                [value]="Estudiante.Value">{{Estudiante.Title}}</nb-option>
+                            </nb-select>
+                            <span class="form-text text-danger"
+                            *ngIf="campoEsValido('IDInfoEstudiante')"> 
+                              El campo es obligatorio
+                           </span>
+                </div>  
+                <div class="form-inline">
+                         <label  class="label col-sm-2 col-form-label">Aspecto:</label>
+                                    <nb-select formControlName="Aspecto">
+                                            <nb-option  value="">--Seleccione--</nb-option>
+                                        <nb-option  value="Convivencia">Convivencia</nb-option>
+                                        <nb-option  value="Académico">Académico</nb-option>
+                                        <nb-option  value="Tareas">Tareas</nb-option>
+                                        <nb-option  value="Recomendación">Recomendación</nb-option>
+                                    </nb-select>
+                                    <span class="form-text text-danger"
+                                    *ngIf="campoEsValido('Aspecto')"> 
+                                      El campo es obligatorio
+                                   </span>
+                          <label  class="label col-sm-2 col-form-label">Asignatura:</label>
+                          <nb-select formControlName="IDSubject">
+                                <nb-option  value="">--Seleccione--</nb-option>
+                                <nb-option *ngFor="let Setting of settings" 
+                                [value]="Setting.value">{{Setting.title}}</nb-option>
+                          </nb-select>
+                          <span class="form-text text-danger"
+                          *ngIf="campoEsValido('IDSubject')"> 
+                            El campo es obligatorio
+                         </span>
+                </div>     
+                <div class="form-inline">
+                    <label  class="label col-sm-2 col-form-label">Tipo de Falta:</label>
+                                <nb-select formControlName="Tipo_Falta">
+                                    <nb-option  value="">--Seleccione--</nb-option>
+                                    <nb-option *ngFor="let Tipo_faltas of Tipo_Faltas" 
+                                    [value]="Tipo_faltas.IDTipoFalta">{{Tipo_faltas.TipoFalta}}</nb-option>
+                                </nb-select>
+                                <span class="form-text text-danger"
+                                *ngIf="campoEsValido('Tipo_Falta')"> 
+                                  El campo es obligatorio
+                               </span>
+                          <label  class="label col-sm-2 col-form-label">Falta:</label>
+                            <nb-select formControlName="IDFalta">
+                                <nb-option  value="">--Seleccione--</nb-option>
+                                <nb-option *ngFor="let faltas of Faltas" 
+                                [value]="faltas.IDFalta">{{faltas.Falta}}</nb-option>
+                            </nb-select>
+                            <span class="form-text text-danger"
+                            *ngIf="campoEsValido('IDFalta')"> 
+                              El campo es obligatorio
+                           </span>
+                </div>  
+                <div class="form-inline col-sm-10 ">
+                    <label  class="label col-sm-2 col-form-label">Situación Presentada:</label>
+                    <textarea formControlName="Situacion_Presentada" rows="5" nbInput fullWidth status="primary" shape="round"  placeholder="Text Area"></textarea>
+                    <span class="form-text text-danger"
+                    *ngIf="campoEsValido('Situacion_Presentada')"> 
+                      El campo es obligatorio
+                   </span>
+                </div>    
+                <div class="form-inline col-sm-10 ">
+                    <label   class="label col-sm-2 col-form-label">Posición del Estudiante:</label>
+                    <textarea formControlName="Posicion_Estudiante" rows="5" nbInput fullWidth status="primary" shape="round"  placeholder="Text Area"></textarea>
+                    <span class="form-text text-danger"
+                    *ngIf="campoEsValido('Posicion_Estudiante')"> 
+                      El campo es obligatorio
+                   </span>
+                </div> 
+                <div class="form-inline col-sm-10 ">
+                    <label   class="label col-sm-2 col-form-label">Acuerdos para el Mejoramiento:</label>
+                    <textarea formControlName="Acuerdos_Mejoramiento" rows="5" nbInput fullWidth status="primary" shape="round"  placeholder="Text Area"></textarea>
+                    <span class="form-text text-danger"
+                    *ngIf="campoEsValido('Acuerdos_Mejoramiento')"> 
+                      El campo es obligatorio
+                   </span>
+                </div> 
+                <div class="form-inline col-sm-12 ">
+                    <label   class="label col-sm-2 col-form-label">Docente: </label>
+                    <label>{{docente}}</label>
+                </div> 
+                <div class="offset-sm-8 col-auto mr-auto">
+                    <button type="submit" status="primary" nbButton>Guardar</button>
+                </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+</form>    
+     

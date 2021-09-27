@@ -1,0 +1,20 @@
+
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  font-size: 2em;
+  position: absolute;
+  top: 10px; left: 10px;
+}
+
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+  color: #5dcfe3;
+}
+nb-card-header{
+  border-color: #ffffff;
+  background-color: #d0dadaf5;
+  text-align: center;
+}
+
+  

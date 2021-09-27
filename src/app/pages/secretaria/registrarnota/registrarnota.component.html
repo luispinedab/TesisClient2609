@@ -1,0 +1,41 @@
+<form (ngSubmit)="agregar()">
+  <nb-card size="medium">
+    <nb-card-header style="text-align: center;">
+      Evaluación Diagnostica
+    </nb-card-header>
+    <nb-card-body>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+
+          <thead >
+        
+            <tr>
+        
+              <th colspan="3" style="text-align: center;">ESTUDIANTE</th>
+        
+              <th colspan="1" style="text-align: center;">NOTA</th>
+        
+            </tr>
+        
+          </thead>
+        
+          <tbody>
+            <tr *ngFor="let alumno of estudiantes;let index=index;trackBy:trackByIndex">
+              <td colspan="3" name="IDStudent-{{index}}"  [(ngModel)]="nuevo[index].IDStudent" style="text-align: center;">{{alumno.IDInfoEstudiante.Nombre}}</td>
+              <td  colspan="1" style="text-align: center;">
+                <div style= "margin: auto; width: 100px !important; height: 48px !important;border: solid #1a34b8;"> 
+                  <input type="number" min="0" max="5" step="0.1" nbInput fullWidth name="Nota-{{index}}"  [(ngModel)]="nuevo[index].Nota" placeholder="#">
+                </div>
+              </td>
+            </tr>
+        
+          </tbody>
+          <button  type="submit" status="primary" nbButton>guardar</button>
+        
+        </table>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>
+
+

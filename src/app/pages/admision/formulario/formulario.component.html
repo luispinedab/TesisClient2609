@@ -1,0 +1,675 @@
+<form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+  <div class="container">
+    <div class="row">
+        <nb-card class="col-md-12 col-lg-12 col-xxxl-12" accent="primary">
+            <nb-card-body>
+                <nb-stepper orientation="vertical">
+                    <nb-step [label]="labelOne">
+                        <ng-template #labelOne></ng-template>
+                        <h3>DATOS PERSONALES</h3>
+                          <nb-card class="form-input-card">
+                            <fieldset [disabled]="fieldsetDisabled">
+                            <div class="top-columns">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label  class="label">Nombres Completos</label>
+                                        <input type="text" nbInput fullWidth  formControlName="Nombres" placeholder="Nombres Completos">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label class="label">Primer Apellido</label>
+                                        <input type="text" nbInput fullWidth formControlName="PrimerApellido" placeholder="Primer Apellido">
+                                        <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('PrimerApellido')"> 
+                                            El campo es obligatorio
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label  class="label">Segundo Apellido</label>
+                                          <input type="text" nbInput fullWidth formControlName="SegundoApellido" placeholder="Segundo Apellido">
+                                          <span class="form-text text-danger"
+                                          *ngIf="campoEsValido('SegundoApellido')"> 
+                                              El campo es obligatorio
+                                          </span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label class="label">Tipo de Documento</label>
+                                              <div class="col-sm-12">
+                                                <nb-select  formControlName="TipoDocumento">
+                                                     <nb-option  value="">--Seleccione Tipo de Documento--</nb-option>
+                                                    <nb-option  value="RC">RC</nb-option>
+                                                    <nb-option  value="TI">TI</nb-option>
+                                                    <nb-option  value="CC">CC</nb-option>
+                                                </nb-select>
+                                                <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('TipoDocumento')"> 
+                                                  El campo es obligatorio
+                                                 </span>
+                                              </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label  class="label">Documento de Identificación</label>
+                                          <input type="number" nbInput fullWidth formControlName="Documento" placeholder="Documento de Identificación">
+                                          <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Documento')"> 
+                                                  El campo es obligatorio
+                                          </span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label  class="label">Departamento de Expedición</label>
+                                              <div class="col-sm-12">
+                                                  <nb-select   formControlName="DepartamentodeExpedicion">
+                                                    <nb-option  value="">--Seleccione Departamento--</nb-option>
+                                                      <nb-option *ngFor="let Departamento of departamentos" 
+                                                                  [value]="Departamento">{{Departamento}}</nb-option>
+                                                  </nb-select>
+                                                  <span class="form-text text-danger"
+                                                      *ngIf="campoEsValido('DepartamentodeExpedicion')"> 
+                                                        El campo es obligatorio
+                                                  </span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label class="label">Ciudad de Expedición</label>
+                                              <div class="col-sm-12">
+                                                  <nb-select  formControlName="CiudaddeExpedicion">
+                                                    <nb-option  value="">--Seleccione Ciudad--</nb-option>
+                                                    <nb-option *ngFor="let Ciudad of ciudades" 
+                                                                [value]="Ciudad">{{Ciudad}}</nb-option>
+                                                  </nb-select>
+                                                  <span class="form-text text-danger"
+                                                      *ngIf="campoEsValido('CiudaddeExpedicion')"> 
+                                                        El campo es obligatorio
+                                                  </span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-4 col-xxxl-4">
+                                        <div class="form-group">
+                                          <label class="label">Fecha de Nacimiento</label>
+                                              <div class="col-sm-12">
+                                                <input  nbInput fullWidth formControlName="FechadeNacimiento" [nbDatepicker]="datepicker" placeholder="Fecha de Nacimiento">
+                                                <nb-datepicker #datepicker format="yyyy-MM-dd"></nb-datepicker>
+                                                <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('FechadeNacimiento')"> 
+                                                  El campo es obligatorio
+                                                </span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                          <label  class="label">Lugar de Nacimiento</label>
+                                             <div class="row">       
+                                                  <div class="col-sm-6">
+                                                    <label class="label">Departamento</label>
+                                                        <nb-select  formControlName="DepartamentodeNacimiento">
+                                                                <nb-option  value="">--Seleccione Departamento--</nb-option>
+                                                                  <nb-option *ngFor="let Departamento of departamentos" 
+                                                                  [value]="Departamento">{{Departamento}}</nb-option>
+                                                        </nb-select>
+                                                        <span class="form-text text-danger"
+                                                          *ngIf="campoEsValido('DepartamentodeNacimiento')"> 
+                                                            El campo es obligatorio
+                                                        </span>
+                                                  </div>
+                                                  <div class="col-sm-6">
+                                                    <label class="label">Ciudad</label>
+                                                        <nb-select  formControlName="CiudaddeNacimiento">
+                                                                  <nb-option  value="">--Seleccione Ciudad--</nb-option>
+                                                                  <nb-option *ngFor="let Ciudad of ciudades" 
+                                                                    [value]="Ciudad">{{Ciudad}}</nb-option>
+                                                        </nb-select>
+                                                        <span class="form-text text-danger"
+                                                          *ngIf="campoEsValido('CiudaddeNacimiento')"> 
+                                                            El campo es obligatorio
+                                                        </span>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                      <div class="form-group">
+                                        <label for="inputSexo" class="label">Sexo</label>
+                                            <div class="col-sm-12">
+                                                <nb-select  formControlName="Sexo">
+                                                     <nb-option  value="">--Seleccione Tipo de Sexo--</nb-option>
+                                                    <nb-option  value="F">Femenino</nb-option>
+                                                    <nb-option  value="M">Masculino</nb-option>
+                                                </nb-select>
+                                                <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Sexo')"> 
+                                                  El campo es obligatorio
+                                                </span>
+                                            </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label  class="label">Edad</label>
+                                          <input type="number" nbInput fullWidth formControlName="Edad" placeholder="Edad">
+                                          <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Edad')"> 
+                                                  El campo es obligatorio
+                                                </span>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label for="inputRH" class="label">RH</label>
+                                              <div class="col-sm-12">
+                                                <nb-select formControlName="RH">
+                                                     <nb-option  value="">--Seleccione Tipo de Sangre--</nb-option>
+                                                    <nb-option  value="O-">O-</nb-option>
+                                                    <nb-option  value="O+">O+</nb-option>
+                                                    <nb-option  value="A-">A-</nb-option>
+                                                    <nb-option  value="A+">A+</nb-option>
+                                                    <nb-option  value="B-">B-</nb-option>
+                                                    <nb-option  value="B+">B+</nb-option>
+                                                    <nb-option  value="AB-">AB-</nb-option>
+                                                    <nb-option  value="AB+">AB+</nb-option>
+                                                </nb-select>
+                                                <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('RH')"> 
+                                                  El campo es obligatorio
+                                                </span>
+                                              </div>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label class="label">Direccion de Residencia</label>
+                                          <input type="text" nbInput formControlName="Direccion" fullWidth placeholder="Direccion de Residencia">
+                                          <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Direccion')"> 
+                                                  El campo es obligatorio
+                                                </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label class="label">Barrio y/o Vereda</label>
+                                          <input type="text" nbInput fullWidth formControlName="Barrio" placeholder="Barrio y/o Vereda">
+                                          <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Barrio')"> 
+                                                  El campo es obligatorio
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label  class="label">Telefono o Celular</label>
+                                          <input type="number" nbInput fullWidth formControlName="Telefono"placeholder="Telefono o Celular">
+                                          <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Telefono')"> 
+                                                  El campo es obligatorio
+                                          </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label for="inputEPS" class="label">EPS</label>
+                                          <input type="text" nbInput fullWidth formControlName="EPS" placeholder="EPS">
+                                          <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('EPS')"> 
+                                                  El campo es obligatorio
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <div class="form-group">
+                                              <label class="label">Caja de Compensacion</label>
+                                              <input type="text" nbInput fullWidth formControlName="CajaCompensacion" placeholder="Caja de Compensación">
+                                              <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('CajaCompensacion')"> 
+                                                  El campo es obligatorio
+                                              </span>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label class="label">Estrato de Vivienda</label>
+                                              <div class="col-sm-9">
+                                                  <nb-select formControlName="Estrato">
+                                                      <nb-option  value="">--Seleccione Estrato--</nb-option>
+                                                    <nb-option  value="Bajo-bajo">Bajo-bajo</nb-option>
+                                                    <nb-option  value="Bajo">Bajo</nb-option>
+                                                    <nb-option  value="Medio-bajo">Medio-bajo</nb-option>
+                                                    <nb-option  value="Medio">Medio</nb-option>
+                                                    <nb-option  value="Medio-alto">Medio-alto</nb-option>
+                                                    <nb-option  value="Alto">Alto</nb-option>
+                                                </nb-select>
+                                                <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Estrato')"> 
+                                                  El campo es obligatorio
+                                               </span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label  class="label">Nivel del Sisbén</label>
+                                              <div class="col-sm-9">
+                                                <nb-select nbPopover="NIVEL 1: 0 - 47.99.  NIVEL 2: 44.8 - 51.57.  NIVEL 3: Mayor a 51.57." nbPopoverTrigger="hover" formControlName="Sisben">
+                                                    <nb-option  value="">--Seleccione Nivel--</nb-option>
+                                                    <nb-option  value="1">Nivel 1</nb-option>
+                                                    <nb-option  value="2">Nivel 2</nb-option>
+                                                    <nb-option  value="3">Nivel 3</nb-option>
+                                                </nb-select>
+                                                <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('Sisben')"> 
+                                                  El campo es obligatorio
+                                               </span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                          <label class="label">Grado a Ingresar</label>
+                                              <div class="col-sm-9">
+                                                <nb-select formControlName="GradoaIngresar">
+                                                          <nb-option  value="">--Seleccione Grado--</nb-option>
+                                                          <nb-option *ngFor="let Grade of grades" 
+                                                            [value]="Grade">{{Grade}}</nb-option>
+                                                </nb-select>
+                                                <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('GradoaIngresar')"> 
+                                                  El campo es obligatorio
+                                               </span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </fieldset>
+                          </nb-card>
+                        <div class="offset-sm-5 col-auto mr-auto">
+                            <button  nbButton status="warning" disabled nbStepperNext>Atras</button>
+                            <button type="submit" nbButton status="primary"  nbStepperNext>Siguiente</button>
+                          </div>
+                        
+                    </nb-step>
+
+                    <nb-step [label]="labelTwo">
+                        <ng-template #labelTwo></ng-template>
+                        <h3>EXPERIENCIAS ESCOLARES</h3>
+                        <div class="col-md-12 col-lg-12 col-xxxl-12">
+                          <nb-card class="form-input-card">
+                            <nb-card-body class="result-from-dialog">
+                              <fieldset [disabled]="fieldsetDisabled">
+                              <div class="table-responsive table-hover">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                    <tr class="bg-dark text-white">
+                                      <th>Nombre del Colegio o Jardín</th>
+                                      <th>Dirección</th>
+                                      <th>Teléfono</th>
+                                      <th>Grados Cursados</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let experience of experiences">
+                                      <td>{{experience[0]}}</td>
+                                      <td>{{experience[1]}}</td>
+                                      <td>{{experience[2]}}</td>
+                                      <td>{{experience[3]}}</td>
+                                    </tr>
+                                    <tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <button nbButton type="button" status="success" (click)="formexperiencias()"><nb-icon icon="plus-circle-outline"></nb-icon>Agregar</button>
+                              <button nbButton type="button" status="info"  (click)="reiniciarexperiencias()"><nb-icon icon="sync-outline"></nb-icon>Reiniciar</button>
+                            </fieldset>
+                            </nb-card-body>
+                          </nb-card>
+                        </div>
+                        <button nbButton nbStepperPrevious>Atras</button>
+                        <button nbButton status="primary"  nbStepperNext>Siguiente</button>
+                    </nb-step>
+
+                    <nb-step [label]="labelthree">
+                        <ng-template #labelthree></ng-template>
+                        <h3>DATOS FAMILIARES</h3>
+                        <div class="top-columns">
+                            
+                          <div class="col-sm-6">
+                            <nb-card>
+                              <fieldset [disabled]="fieldsetDisabled">
+                              <label class="label">EL ESTUDIANTE VIVE CON:</label>
+                              <div class="row">
+                                      <nb-card-body>
+                                          <nb-select  multiple formControlName="vivecon" placeholder="Seleccione">
+                                            <nb-option value="Padre">Padre</nb-option>
+                                            <nb-option value="Madre">Madre</nb-option>
+                                            <nb-option value="Hermanos">Hermanos</nb-option>
+                                            <nb-option value="Otros">Otros</nb-option>
+                                          </nb-select>
+                                          <div class="form-group"  [hidden]="quienes">
+                                            <label  class="label">¿Quiénes?</label>
+                                            <input type="text" nbInput fullWidth formControlName="Quienes" placeholder="Quienes">
+                                          </div>
+                                        </nb-card-body>
+                              </div>
+                            </fieldset>
+                            </nb-card>
+                          </div>
+                          
+                          <nb-card class="form-input-card">
+                            <fieldset [disabled]="fieldsetDisabled">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label  class="label">Nombre del Padre</label>
+                                      <input type="text" nbInput fullWidth formControlName="NombrePadre" placeholder="Nombre del Padre">
+                                      <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('NombrePadre')"> 
+                                                  El campo es obligatorio
+                                        </span>
+                                    </div>
+                                  </div>
+                                    <div class="col-md-12 col-lg-4 col-xxxl-4">
+                                      <div class="form-group">
+                                        <label class="label">Fecha de Nacimiento</label>
+                                            <div class="col-sm-12">
+                                              <input  nbInput fullWidth formControlName="FechadeNacimientoP" [nbDatepicker]="datepickerP" placeholder="Fecha de Nacimiento">
+                                              <nb-datepicker #datepickerP format="yyyy-MM-dd"></nb-datepicker>
+                                              <span class="form-text text-danger"
+                                                *ngIf="campoEsValido('FechadeNacimientoP')"> 
+                                                  El campo es obligatorio
+                                               </span>
+                                            </div>
+                                      </div>
+                                   </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label  class="label">Documento de Identidad</label>
+                                      <input type="number" nbInput fullWidth formControlName="IdentificacionPadre" placeholder="Documento de Identidad">
+                                      <span class="form-text text-danger"
+                                      *ngIf="campoEsValido('IdentificacionPadre')"> 
+                                        El campo es obligatorio
+                                     </span>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Profesión u Oficio</label>
+                                      <input type="text" nbInput fullWidth formControlName="ProfesionPadre" placeholder="Profesión u Oficio">
+                                      <span class="form-text text-danger"
+                                      *ngIf="campoEsValido('ProfesionPadre')"> 
+                                        El campo es obligatorio
+                                     </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Empresa</label>
+                                      <input type="text" nbInput fullWidth formControlName="EmpresaPadre" placeholder="Empresa">
+                                      <span class="form-text text-danger"
+                                      *ngIf="campoEsValido('EmpresaPadre')"> 
+                                        El campo es obligatorio
+                                     </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Cargo</label>
+                                      <input type="text" nbInput fullWidth formControlName="CargoPadre"  placeholder="Cargo">
+                                      <span class="form-text text-danger"
+                                      *ngIf="campoEsValido('CargoPadre')"> 
+                                        El campo es obligatorio
+                                     </span>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label  class="label">Teléfono y/o Celular</label>
+                                      <input type="number" nbInput fullWidth formControlName="TelefonoCelularPadre" placeholder="Teléfono y/o Celular">
+                                      <span class="form-text text-danger"
+                                      *ngIf="campoEsValido('TelefonoCelularPadre')"> 
+                                        El campo es obligatorio
+                                     </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Correo Electrónico</label>
+                                      <input type="text" nbInput fullWidth formControlName="MailPadre" placeholder="Correo Electrónico">
+                                      <span class="form-text text-danger"
+                                      *ngIf="campoEsValido('MailPadre')"> 
+                                        El campo es obligatorio
+                                     </span>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label  class="label">Nombre de la Madre</label>
+                                      <input type="text" nbInput fullWidth formControlName="NombreMadre" placeholder="Nombre de la Madre">
+                                      <span class="form-text text-danger"
+                                      *ngIf="campoEsValido('NombreMadre')"> 
+                                        El campo es obligatorio
+                                     </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12 col-lg-4 col-xxxl-4">
+                                    <div class="form-group">
+                                      <label class="label">Fecha de Nacimiento</label>
+                                          <div class="col-sm-12">
+                                            <input  nbInput fullWidth formControlName="FechadeNacimientoM" [nbDatepicker]="datepickerM" placeholder="Fecha de Nacimiento">
+                                            <nb-datepicker #datepickerM format="yyyy-MM-dd"></nb-datepicker>
+                                            <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('FechadeNacimientoM')"> 
+                                                El campo es obligatorio
+                                            </span>
+                                          </div>
+                                    </div>
+                                </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Documento de Identidad</label>
+                                      <input type="number" nbInput fullWidth formControlName="IdentificacionMadre" placeholder="Documento de Identidad">
+                                      <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('IdentificacionMadre')"> 
+                                                El campo es obligatorio
+                                            </span>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Profesión u Oficio</label>
+                                      <input type="text" nbInput fullWidth formControlName="ProfesionMadre" placeholder="Profesión u Oficio">
+                                      <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('ProfesionMadre')"> 
+                                                El campo es obligatorio
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Empresa</label>
+                                      <input type="text" nbInput fullWidth formControlName="EmpresaMadre"placeholder="Empresa">
+                                      <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('EmpresaMadre')"> 
+                                                El campo es obligatorio
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label  class="label">Cargo</label>
+                                      <input type="text" nbInput fullWidth formControlName="CargoMadre" placeholder="Cargo">
+                                      <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('CargoMadre')"> 
+                                                El campo es obligatorio
+                                        </span>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Teléfono y/o Celular</label>
+                                      <input type="number" nbInput fullWidth formControlName="TelefonoCelularMadre" placeholder="Teléfono y/o Celular">
+                                      <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('TelefonoCelularMadre')"> 
+                                                El campo es obligatorio
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="label">Correo Electrónico</label>
+                                      <input type="text" nbInput fullWidth formControlName="MailMadre" placeholder="Correo Electrónico">
+                                      <span class="form-text text-danger"
+                                              *ngIf="campoEsValido('MailMadre')"> 
+                                                El campo es obligatorio
+                                        </span>
+                                    </div>
+                                  </div>
+                            </div>
+                          </fieldset>
+                          </nb-card>
+                        </div>  
+                        <div class="offset-sm-5 col-auto mr-auto">
+                            <button  nbButton  nbButton nbStepperPrevious>Atras</button>
+                            <button  nbButton status="primary" nbButton nbStepperNext>Siguiente</button>
+                          </div>
+                    </nb-step>
+
+                    <nb-step [label]="labelFour">
+                        <ng-template #labelFour></ng-template>
+                        <h3>HERMANOS QUE ESTUDIAN EN ESTA INSTITUCIÓN</h3>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-xxxl-12">
+                              <nb-card class="form-input-card">
+                                <nb-card-body class="result-from-dialog">
+                                  <fieldset [disabled]="fieldsetDisabled">
+                                  <div class="table-responsive table-hover">
+                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                      <thead>
+                                        <tr class="bg-dark text-white">
+                                          <th>Nombre</th>
+                                          <th>Edad</th>
+                                          <th>Curso</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let name of names">
+                                          <td>{{name[0]}}</td>
+                                          <td>{{name[1]}}</td>
+                                          <td>{{name[2]}}</td>
+                                        </tr>
+                                        <tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <button nbButton type="button" status="success" (click)="open3()"><nb-icon icon="plus-circle-outline"></nb-icon>Agregar</button>
+                                  <button nbButton type="button" status="info"  (click)="reiniciarhermanos()"><nb-icon icon="sync-outline"></nb-icon>Reiniciar</button>
+                                </fieldset>
+                                </nb-card-body>
+                              </nb-card>
+                            </div>
+                        </div>
+                        <div class="offset-sm-5 col-auto mr-auto">
+                          <button  nbButton nbStepperPrevious>Atras</button>
+                          <button nbButton  status="primary" nbStepperNext>Siguiente</button>
+                        </div>
+                    </nb-step>
+                    <nb-step [label]="Fivestep">
+                      <ng-template #Fivestep></ng-template>
+                      <h3>PREGUNTAS ADICIONALES</h3>
+                        <div class="row">
+                          <fieldset [disabled]="fieldsetDisabled">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label class="label">¿Cómo conoció el Colegio?</label>
+                              <input type="text" nbInput fullWidth formControlName="Pregunta1">
+                              <span class="form-text text-danger"
+                              *ngIf="campoEsValido('Pregunta1')"> 
+                                El campo es obligatorio
+                             </span> 
+                            </div>
+                          </div>
+                        </fieldset>
+                        </div>
+                        <div class="row">
+                          <fieldset [disabled]="fieldsetDisabled">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label class="label">¿Cómo tuvo conocimiento del Proceso de Admisión?</label>
+                              <input type="text" nbInput fullWidth formControlName="Pregunta2">
+                              <span class="form-text text-danger"
+                              *ngIf="campoEsValido('Pregunta2')"> 
+                                El campo es obligatorio
+                             </span> 
+                            </div>
+                          </div>
+                        </fieldset>
+                        </div>
+                        <fieldset [disabled]="fieldsetDisabled">
+                          <label for="inputViveCon" class="label">¿En este Colegio el aspirante ha realizado el Proceso de Admisión?
+                          </label>
+                          <div class="row">
+                                  <div class="form-group">
+                                            <nb-radio-group formControlName="Pregunta3" >
+                                              <nb-radio value="NO" (valueChange)="p3=true">NO</nb-radio>
+                                              <nb-radio value="SI" (valueChange)="p3=false">SI</nb-radio>
+                                            </nb-radio-group>
+                                              <div class="form-group"  [hidden]="p3">
+                                                  <label  class="label">¿Para qué grado?</label>
+                                                  <input type="text" formControlName="Pregunta31" nbInput fullWidth >
+                                              </div>
+                                              <div class="form-group" [hidden]="p3">
+                                                <label class="label">¿En qué año?</label>
+                                                <input type="text"  formControlName="Pregunta32" nbInput fullWidth >
+                                            </div>
+                                  </div>
+                          </div>
+                        </fieldset>
+                          <div class="offset-sm-5 col-auto mr-auto">
+                            <button  nbButton nbStepperPrevious>Atras</button>
+                            <button [disabled]="fieldsetDisabled"type="submit"nbButton (click)="getvalues()" status="primary" nbStepperNext>Enviar</button>
+                          </div>
+                    </nb-step>
+                </nb-stepper>
+            </nb-card-body>
+        </nb-card>
+    </div>
+  </div> 
+</form> 

@@ -1,0 +1,12 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+}
+nb-card-header {
+  border-color: #ffffff;
+  background-color: #d0dadaf5;
+  text-align: center;
+}

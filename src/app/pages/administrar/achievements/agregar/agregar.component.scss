@@ -1,0 +1,42 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    width: 400px!important;
+    height: 400px!important;
+  }
+  .form-inline [fullWidth] {
+    flex: 1;
+  }
+  input {
+    width: 100%;
+  }
+
+  .cancel {
+    margin-right: 1rem;
+  }
+  
+  .form-inline > * {
+    margin: 0 0.5rem 1.5rem 0;
+    
+  }
+  
+  nb-card.inline-form-card nb-card-body {
+    padding-bottom: 1rem;
+  }
+
+  nb-card-header {
+    max-width: 1000px;
+    max-height: 1000px;
+  }
+  
+  .objeto{
+        text-align: right;
+      }
+      nb-card-header{
+        text-align: center;
+      }
+    .button{
+      text-align: center;
+    }
+}

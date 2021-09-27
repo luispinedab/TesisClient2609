@@ -1,0 +1,27 @@
+<nb-card>
+    <nb-card-header style="text-align: center;">
+      Total Fallas:{{total}} Periodo:{{periodo}}
+    </nb-card-header>
+    <nb-card-body>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+
+          <thead >
+        
+            <tr>
+        
+              <th  style="text-align: center;">Fecha de la Falla</th>
+
+            </tr>
+        
+          </thead>
+        
+          <tbody>
+            <tr *ngFor="let fecha of fechas">
+              <td colspan="3"  style="text-align: center;">{{fecha}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </nb-card-body>
+  </nb-card>

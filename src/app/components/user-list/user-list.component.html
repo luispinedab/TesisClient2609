@@ -1,0 +1,40 @@
+<ngx-navigation></ngx-navigation>
+<div class="container p-4">
+<div class="row">
+  <div class="card shadow mb-4 col-8">
+    <div class="table-responsive table-hover">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr class="bg-dark text-white">
+            <th>Nombre</th>
+            <th>Identificación</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Nombre de Usuario</th>
+            <th>Estado</th>
+            <th>Tipo de Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr [routerLink]="['/administrar/usuarios/crud',usuario.IDUser]" *ngFor="let usuario of usuarios;">
+            <td>{{usuario.Name}}&nbsp;{{usuario.Lastname}}</td>
+            <td>{{usuario.Identification}}</td>
+            <td>{{usuario.Email}}</td>
+            <td>{{usuario.PhoneNumber}}</td>
+            <td>{{usuario.Nickname}}</td>
+            <td>{{usuario.UserState}}</td>
+            <td>{{usuario.IDUserType.UserType}}</td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card shadow mb-4 col-4">
+    <ngx-user-form></ngx-user-form>
+  </div>
+</div>
+</div>
+
+

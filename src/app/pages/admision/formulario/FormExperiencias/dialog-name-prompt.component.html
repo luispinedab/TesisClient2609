@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-header>EXPERIENCIAS ESCOLARES</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <input #colegio nbInput placeholder="Colegio">
+    </div>
+    <div class="row">
+      <input #direccion nbInput placeholder="Dirección">
+    </div>
+    <div class="row">
+      <input #telefono nbInput placeholder="Teléfono">
+    </div>
+    <div class="row">
+      <input #gradoscursados nbInput placeholder="Grados Cursados">
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(colegio.value,direccion.value,telefono.value,gradoscursados.value)">Submit</button>
+  </nb-card-footer>
+</nb-card>

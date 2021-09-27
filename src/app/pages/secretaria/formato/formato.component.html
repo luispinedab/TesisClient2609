@@ -1,0 +1,23 @@
+<form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+    <nb-card size="small" accent="primary" [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="giant">
+        <nb-card-header><h6>Subir Formato de Matricula</h6></nb-card-header>
+        <nb-card-body>
+            <div class="form-inline1">
+                <nb-checkbox [checked]="formate.check" status="primary">{{ formate.nombre }}</nb-checkbox>
+                                <a [href]="[formate.url]" *ngIf="formate.check">descargar</a>
+            </div>
+            <div class="form-inline1">
+                
+            <input type="file" formControlName="Archivo" (change)="cambioArchivo($event)">
+            <span class="form-text text-danger"
+                              *ngIf="campoEsValido('Archivo')"> 
+                                El campo es obligatorio
+            </span>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="success"  type="submit">Subir</button>
+        </nb-card-footer>
+    </nb-card>
+</form>
+

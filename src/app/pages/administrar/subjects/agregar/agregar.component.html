@@ -1,0 +1,75 @@
+<form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+    <div class="col-lg-6">
+      <nb-card status="primary">
+          <nb-card-header>Agregar Materias</nb-card-header>
+          <nb-card-body>
+            <div class="form-inline">
+              <label  class="label col-sm-2 col-form-label">Año:</label>
+                <nb-select  formControlName="Year">
+                  <nb-option  value="">--Seleccione--</nb-option>
+                  <nb-option *ngFor="let anio of Anios1" 
+                  [value]="anio">{{anio}}</nb-option>
+                </nb-select>
+                <span class="form-text text-danger"
+                  *ngIf="campoEsValido('Year')"> 
+                    El campo es obligatorio
+                 </span>
+            </div>
+            <div class="form-inline">
+              <label  class="label col-sm-2 col-form-label">Curso:</label>
+              <nb-select  formControlName="IDGrade">
+                <nb-option  value="">--Seleccione--</nb-option>
+                <nb-option *ngFor="let Curso of grades" 
+                [value]="Curso.IDGrade">{{Curso.NameGrade}}</nb-option>
+              </nb-select>
+              <span class="form-text text-danger"
+                  *ngIf="campoEsValido('IDGrade')"> 
+                    El campo es obligatorio
+                 </span>
+            </div>
+            <div class="form-inline">
+              <label  class="label col-sm-2 col-form-label">Area:</label>
+                <nb-select formControlName="Area">
+                    <nb-option  value="">--Seleccione--</nb-option>
+                    <nb-option *ngFor="let Area of Areas" 
+                    [value]="Area.IDArea">{{Area.Area}}</nb-option>
+                </nb-select>
+                <span class="form-text text-danger"
+                  *ngIf="campoEsValido('Area')"> 
+                    El campo es obligatorio
+                 </span>
+            </div>
+            <div class="form-inline">
+                <label  class="label col-sm-2 col-form-label">Nombre Asignatura:</label>
+                  <nb-select formControlName="IDNameSubject">
+                      <nb-option  value="">--Seleccione--</nb-option>
+                      <nb-option *ngFor="let Namesubject of Namesubjects" 
+                      [value]="Namesubject.IDNameSubject">{{Namesubject.namesubject}}</nb-option>
+                  </nb-select>
+                  <span class="form-text text-danger"
+                    *ngIf="campoEsValido('IDNameSubject')"> 
+                      El campo es obligatorio
+                   </span>
+            </div>
+            <div class="form-inline">
+                <label  class="label col-sm-2 col-form-label">Docente:</label>
+                  <nb-select formControlName="IDTeacher">
+                      <nb-option  value="">--Seleccione--</nb-option>
+                      <nb-option *ngFor="let Docente of Docentes" 
+                      [value]="Docente.value">{{Docente.title}}</nb-option>
+                  </nb-select>
+                  <span class="form-text text-danger"
+                    *ngIf="campoEsValido('IDTeacher')"> 
+                      El campo es obligatorio
+                   </span>
+            </div>
+          </nb-card-body>
+          <nb-card-footer>
+            <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+            <button type="submit" status="success" nbButton>Guardar</button>
+          </nb-card-footer>
+      </nb-card>
+  </div>
+  </form>
+  
+  

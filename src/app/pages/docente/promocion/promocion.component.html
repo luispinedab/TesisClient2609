@@ -1,0 +1,14 @@
+<nb-card>
+    <nb-card-header>
+      Información de Estudiantes
+    </nb-card-header>
+  
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect) = "onUserRowSelect($event)" #table>
+      </ng2-smart-table>
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="cancel" nbButton status="primary" (click)="SelectAll()">Seleccionar Todo</button>
+      <button nbButton status="success" (click)="Asignar()">Aprobar/Reprobar</button>
+    </nb-card-footer>
+  </nb-card>

@@ -1,0 +1,44 @@
+<form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+    <div class="col-md-6">
+        <nb-card  size="small" accent="primary">
+            <nb-card-header><h6>Crear Usuario</h6></nb-card-header>
+            <nb-card-body>
+                <div class="form-group row">
+                <label for="inputNombre" class="label col-sm-3 col-form-label">Nombre Completo</label>
+                <div class="col-sm-9">
+                    <input type="text" nbInput fullWidth formControlName="Nombres" placeholder="Nombre Completo">
+                        <span class="form-text text-danger"
+                                *ngIf="campoEsValido('Nombres')"> 
+                                El campo es obligatorio
+                        </span>
+                </div>
+                </div>
+                <div class="form-group row">
+                <label for="inputiden" class="label col-sm-3 col-form-label">Identificación</label>
+                <div class="col-sm-9">
+                    <input type="number" nbInput fullWidth formControlName="Documento" placeholder="Identificación">
+                        <span class="form-text text-danger"
+                                *ngIf="campoEsValido('Documento')"> 
+                                El campo es obligatorio
+                        </span>
+                </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputemail" class="label col-sm-3 col-form-label">Correo Electrónico</label>
+                    <div class="col-sm-9">
+                        <input type="email" nbInput fullWidth formControlName="Correo" placeholder="Correo Electrónico">
+                            <span class="form-text text-danger"
+                                    *ngIf="campoEsValido('Correo')"> 
+                                    El campo es obligatorio
+                            </span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                <div class="offset-sm-3 col-sm-9">
+                    <button type="submit" [disabled]="!miFormulario.valid" nbButton status="primary">Enviar</button>
+                </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</form>

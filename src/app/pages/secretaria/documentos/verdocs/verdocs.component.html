@@ -1,0 +1,11 @@
+<nb-card>
+    <nb-card-header><h6>LISTA DE DOCUMENTOS ESTUDIANTE:{{nombre}}</h6></nb-card-header>
+    <nb-card-body>
+      <nb-list>
+        <nb-list-item *ngFor="let documento of documentos">
+          <nb-checkbox [checked]="documento.check" status="primary">{{ documento.nombre }}</nb-checkbox>
+          <a [href]="[documento.url]" *ngIf="documento.check">descargar</a>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+  </nb-card>

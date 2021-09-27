@@ -1,0 +1,10 @@
+<nb-card>
+    <nb-card-header>
+      ASIGNAR LOGROS
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="logros" (rowSelect)="onUserRowSelect($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+    <button  (click)="Guardar()" status="primary" nbButton>guardar</button>
+  </nb-card>
